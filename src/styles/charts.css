@@ -1,0 +1,108 @@
+:root {
+  --chart-bg: #0f172a;
+  --chart-text: #f8fafc;
+  --chart-grid: #1e293b;
+  --accent-primary: #38bdf8;
+  --accent-secondary: #818cf8;
+  --danger: #ef4444;
+  --success: #22c55e;
+  --glass-bg: rgba(15, 23, 42, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+.zenith-chart-container {
+  background: var(--chart-bg);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--glass-border);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Highcharts Overrides */
+.highcharts-background {
+  fill: transparent;
+}
+
+.highcharts-grid-line {
+  stroke: var(--chart-grid);
+  stroke-dasharray: 4;
+}
+
+.highcharts-axis-line {
+  stroke: var(--chart-grid);
+}
+
+.highcharts-axis-labels {
+  fill: #64748b !important;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.highcharts-tooltip-container {
+  z-index: 100 !important;
+}
+
+/* Custom Premium Tooltip */
+.custom-tooltip {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  color: var(--chart-text);
+  min-width: 200px;
+}
+
+.custom-tooltip .metric-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.custom-tooltip .metric-label {
+  color: #94a3b8;
+}
+
+.custom-tooltip .metric-value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.custom-tooltip .stock-header {
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--accent-primary);
+}
+
+/* Floating Price Tag */
+.stock-price-overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  padding: 10px 16px;
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.stock-price-overlay .price-name {
+  font-size: 12px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stock-price-overlay .price-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--chart-text);
+}

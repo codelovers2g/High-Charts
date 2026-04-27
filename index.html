@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zenith | Enterprise Chart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #020617;
+      color: #f8fafc;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background-color: #0f172a;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 24px;
+    }
+
+    .main-content {
+      padding: 40px;
+    }
+
+    header {
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .chart-card {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      background: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    #main-chart {
+      height: 500px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div style="font-weight: 800; font-size: 20px; color: #38bdf8; margin-bottom: 40px;">ZENITH</div>
+      <nav style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="color: #38bdf8; font-weight: 600;">Dashboard</div>
+        <div style="color: #64748b;">Analytics</div>
+        <div style="color: #64748b;">Trading</div>
+        <div style="color: #64748b;">Settings</div>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <header>
+        <h1>Market Intelligence</h1>
+        <p class="subtitle">Real-time enterprise-grade financial visualization</p>
+      </header>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <div style="font-weight: 600; font-size: 18px;">Price Action</div>
+          <span class="badge">LIVE UPDATES</span>
+        </div>
+        <div id="main-chart"></div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { CreateChart } from './src/main.js';
+    
+    // Mock data for demonstration
+    const now = Date.now();
+    const data = [];
+    for (let i = 0; i < 100; i++) {
+      const time = now - (100 - i) * 86400000;
+      const open = 150 + Math.random() * 50;
+      const high = open + Math.random() * 10;
+      const low = open - Math.random() * 10;
+      const close = (open + high + low) / 3;
+      const vol = Math.random() * 1000000;
+      data.push([time, open, high, low, close, vol]);
+    }
+
+    const series = [
+      {
+        type: 'candlestick',
+        name: 'AAPL',
+        data: data
+      }
+    ];
+
+    CreateChart(series, 'main-chart', true, true, false, 'AAPL', null, null);
+  </script>
+</body>
+</html>
